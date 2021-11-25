@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<!--
+* PROJETO: API
+* DESCRICAO: API RESTful - Application Programming Interface
+*            baseada na arquitetura REST- Representational State
+*            Transfer (Transferência Representacional de Estado).
+* Base da API: Protocolo HTTP usando especificações dos métodos aceitos pelo endpoint.
+* Formato da resposta: JSON.
+* Cliente: TCC PUC Minas
+* Solicitante: Augusto
+
+* Descricao do arquivo:
+* acesso a dados do cliente solicitacao
+
+* Desenvolvimento:
+* Augusto Arruda 
+* Email: augusto.rr.arruda@gmail.com
+* Cel: (092) 991848979
+* Manaus, 04 de abril de 2021.
+-->
+<html lang="pt-br">
+    <head>
+        <title>Serviço ao Cidadão</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Augusto R R Arruda Analista TI / Desenvolvedor Full Stack" />
+        <link rel="icon" type="image/png"  href="./src/img/sgm.ico"/>
+        <!--carga css-->
+        <link rel="stylesheet" href = "./src/package_plugins/bootstrap-4.3.1-dist/css/bootstrap.min.css"><!--ajustes da tela-->    
+        <link rel="stylesheet" href = "./src/package_plugins/bootstrap-4.3.1-dist/css/bootstrap.min.css.map"><!--ajustes da tela-->   
+        <link rel="stylesheet" href = "./src/package_plugins/bootstrap-4.3.1-dist/css/bootstrap-reboot.css"><!--ajustes da tela-->
+        <link rel="stylesheet" type="text/css" href="./src/package_plugins/cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"><!-- Tabela dinamica -->
+        <link rel="stylesheet" type="text/css" href="./src/package_plugins/cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"> <!-- Tabela dinamica - Responsividade -->
+        <link rel="stylesheet" href ="./src/pages/index/css/index.css" >
+        <!--<link rel="stylesheet" href ="./src/pages/index/css/menu.css" >-->
+        
+        <!--carga js-->
+        <script src="./src/package_plugins/cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script><!--Cookie-->
+        <script src="./src/package_plugins/cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script><!--Cookie-->
+        <script src="./src/package_plugins/ajax.googleapis.com/ajax/libs/popper.js.1.11.0/popper.min.js"></script><!--Tooltip-->
+        <script src="./src/package_plugins/code.jquery.com/core/jquery-3.4.1/jquery-3.4.1.min.js"></script><!--Modal-->
+        <script src="./src/package_plugins/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script><!--ajustes da tela-->
+        <script type="text/javascript" language="javascript" src="./src/package_plugins/cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script><!-- Tabela dinamica - Responsividade - exportar consulta -->
+        <script type="text/javascript" language="javascript" src="./src/package_plugins/cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script><!-- Tabela dinamica - Responsividade -->
+        <script type="text/javascript" language="javascript" src="./src/pages/index/js/index.js"></script>
+    </head>
+    <body>
+
+        <div id="div_urlmenu" style="margin-top: 160px;"></div><!--Recepciona dados-->
+        
+        <div class="card-body">
+
+        <div class="div_buscapaciente">
+            <div class="div_tabelasolicitacao">
+                <div class="form-row">
+                    <div class="form-group col-md-12 class_subtitulo">
+                    </div>
+                </div>
+                  <!--<div id="div_tabelasolicitacaoee">-->
+                  <!--Recepciona dados-->
+                <table id="tabelasolicitacao" class="display_padraotabelasolicitacao">
+                    <thead>
+                        <tr>
+                            <th class="coluna_thead cth_0"><label class="label_coluna_thead" data-toggle="tooltip" title="Número do id" >ID</label></th>
+                            <th class="coluna_thead cth_1"><label class="label_coluna_thead" data-toggle="tooltip" title="Número do id" >Processo</label></th>
+                            <th class="coluna_thead cth_1"><label class="label_coluna_thead" data-toggle="tooltip" title="Número do id" >Tipo</label></th>
+                            <th class="coluna_thead cth_1"><label class="label_coluna_thead" data-toggle="tooltip" title="Número do id" >Descrição</label></th>
+                            <th class="coluna_thead cth_1"><label class="label_coluna_thead" data-toggle="tooltip" title="Número do id" >Data Solicitação</label></th>
+                            <th class="coluna_thead cth_1"><label class="label_coluna_thead" data-toggle="tooltip" title="Número do id" >Solicitante</label></th>
+                            <th class="coluna_thead cth_1"><label class="label_coluna_thead" data-toggle="tooltip" title="Número do id" >Status</label></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <!-- Animacao de carga-->
+                <img src="./src/img/Loading4.gif" class="loading_tabelasolicitacao" style="width:150px; height:150px; position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%)">
+            </div>
+        </div>
+            
+        <!-- Modal -->
+        <!--https://getbootstrap.com/docs/4.3/components/modal/-->
+        <!--caracteristicas-> extra largo, sem barra de rolagem interna-->
+        <div class="modal fade" id="modal_novasolicitacao" tabindex="-1" role="dialog" aria-labelledby="modal_pacientenovo" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <!--<div class="modal-dialog modal-dialog modal-xl" role="document">-->
+                
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title"><figure class="modal_icone_titulo_xl"></figure><div class="modal_titulo_xl">Solicitação</div></div>
+                        <figure class="modal_icone_close_modal" data-dismiss="modal" aria-label="Close"></figure>
+                    </div>
+                    <div class="modal-body">
+                        <div id="div_novasolicitacao"></div><!--Recepciona dados-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        
+    </body>
+</html>
